@@ -197,8 +197,8 @@ def get_country(name:str):
 countries = [ "AR", "BO", "BR", "CL", "CO", "EC", "GY", "PY", "PE", "SR", "UY", "VE" ] 
 
 def log(transaction: Transaction):
-    with open("transaction.log","w+") as fio:
-        fio.write(fio.read()+"\n"+transaction.__str__())
+    with open("transaction.log","a") as fio:
+        fio.write(transaction.__str__()+"\n")
 
 def parse_merchant(name: str):
     Length = int(name[0:3])
