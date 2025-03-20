@@ -222,7 +222,12 @@ def should_process(transaction: Transaction) -> bool:
     if transaction.merchant.count("E") == 0:
         return True
     
-    if get_country(transaction.merchant):
+    merchant = parse_merchant(transaction.merchant)
+
+    if merchant[2] in countries:
+        return True
+    
+    if 3000 <= int(merchant[0]) <=3308:
         return True
     
     return random.randint(0,1) == 1
