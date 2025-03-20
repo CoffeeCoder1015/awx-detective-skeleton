@@ -197,8 +197,8 @@ def get_country(name:str):
 countries = [ "AR", "BO", "BR", "CL", "CO", "EC", "GY", "PY", "PE", "SR", "UY", "VE" ] 
 
 def log(transaction: Transaction):
-    with open("transaction.log","w") as fio:
-        fio.write(transaction.__str__()+"\n")
+    with open("transaction.log","w+") as fio:
+        fio.write(fio.read()+"\n"+transaction.__str__())
 
 def parse_merchant(name: str):
     Length = int(name[0:3])
@@ -215,19 +215,19 @@ def should_process(transaction: Transaction) -> bool:
 
     print("_________________________")
     print(transaction)
-    # print("Rejecting transaction, it is fraudulent!!", color="green")
-    print(transaction.merchant)
     
 
     if transaction.merchant.count("E") == 0:
         return True
     
     merchant = parse_merchant(transaction.merchant)
-
+    print(merchant)
     if merchant[2] in countries:
+        print("in south america")
         return True
     
     if 3000 <= int(merchant[0]) <=3308:
+        print("is airline type")
         return True
     
     return random.randint(0,1) == 1
