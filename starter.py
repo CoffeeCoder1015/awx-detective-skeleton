@@ -230,6 +230,12 @@ def should_process(transaction: Transaction) -> bool:
         print("is airline type")
         return True
     
+    if transaction.cardDetails.issuedLocation == merchant[2]:
+        print(merchant[2],transaction.cardDetails.issuedLocation)
+        print("same transaction location")
+        return True
+
+    
     return random.randint(0,1) == 1
  
 
