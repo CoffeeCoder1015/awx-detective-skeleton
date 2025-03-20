@@ -198,8 +198,17 @@ countries = [ "AR", "BO", "BR", "CL", "CO", "EC", "GY", "PY", "PE", "SR", "UY", 
 
 def log(transaction: Transaction):
     with open("transaction.log","w") as fio:
-        fio.write(transaction)
-        fio.write("\n")
+        fio.write(transaction.__str__()+"\n")
+
+def parse_merchant(name: str):
+    Length = int(name[0:3])
+    final = 3+Length
+    non_junk = name[:final]
+    CC = non_junk[3:3+4]
+    name = non_junk[7:final-2]
+    country = non_junk[final-2:final]
+    print(country,CC,name)
+    return [CC,name,country]
 
 def should_process(transaction: Transaction) -> bool:
     log(transaction)
