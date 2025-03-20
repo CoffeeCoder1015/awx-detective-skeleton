@@ -1,3 +1,8 @@
+# My algos for the competition
+ - All fun and jokes.
+ - Rng is my good friend. 
+ - Got 4th at the end lol.
+
 # Airwallex Transaction Detective Challenge
 
 This project contains a Python skeleton using the `uv` package and project manager.
