@@ -183,13 +183,41 @@ class ApprovalDecision(TypedDict):
 # ======================================== #
 
 
+import random
+
+
+def get_country(name:str):
+    Length = int(name[0:3])
+    final = 3+Length
+    non_junk = name[:final]
+    country = non_junk[final-2:final]
+    print(country)
+    return country
+
+countries = [ "AR", "BO", "BR", "CL", "CO", "EC", "GY", "PY", "PE", "SR", "UY", "VE" ] 
+
+def log(transaction: Transaction):
+    with open("transaction.log","w") as fio:
+        fio.write(transaction)
+        fio.write("\n")
+
 def should_process(transaction: Transaction) -> bool:
+    log(transaction)
 
     print("_________________________")
     print(transaction)
-    print("Rejecting transaction, it is fraudulent!!", color="green")
+    # print("Rejecting transaction, it is fraudulent!!", color="green")
+    print(transaction.merchant)
+    
 
-    return False
+    if transaction.merchant.count("E") == 0:
+        return True
+    
+    if get_country(transaction.merchant):
+        return True
+    
+    return random.randint(0,1) == 1
+ 
 
 
 # ======================================== #
