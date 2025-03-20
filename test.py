@@ -17,4 +17,11 @@ def parse_merchant(name: str):
     print(country,CC,name)
     return [CC,name,country]
 
-print(parse_merchant("0223004Red Tree GeneralHU not be here he should not be about he should not be here when your mother "))
+
+countries = [ "AR", "BO", "BR", "CL", "CO", "EC", "GY", "PY", "PE", "SR", "UY", "VE" ] 
+merchant = parse_merchant("0223004Red Tree GeneralHU not be here he should not be about he should not be here when your mother ")
+if merchant[2] in countries:
+    print(True,"c")
+
+if 3000 <= int(merchant[0]) <=3308:
+    print(True,"cc")
